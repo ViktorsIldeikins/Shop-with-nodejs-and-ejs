@@ -1,0 +1,13 @@
+<html lang="en">
+
+<head>
+    <%- include('../includes/head.ejs')%>
+    <title>Edit product</title>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs', {page: 'edit-product'})%>
+
+    <%- include('./product-form.ejs', {product: product})%>
+</body>

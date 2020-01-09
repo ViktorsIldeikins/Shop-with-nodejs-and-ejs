@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <%- include('../includes/head.ejs')%>
+    <title>Checkout</title>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs', {page: 'checkout'})%>
+
+    <main>
+        <% if (cartItems.length > 0) { %>
+            <ul>
+            <% for (let item of cartItems) { %>
+                <li>
+                    <p>Name: <%= item.productId.title %> (<%= item.amount %>)</p>
+                    <form action="/cart/remove" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="id" value="<%=item.productId.id%>">
+                        <button class="btn" type="submit"> Delete</button>
+                    </form>
+                </li>
+            <% } %>
+            </ul>
+            <form action="/create-order" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn" type="submit">Order Now</button>
+            </form>
+        <% } else {%>
+            <h2>Empty cart</h2>
+        <% }%>
+    </main>
+</body>

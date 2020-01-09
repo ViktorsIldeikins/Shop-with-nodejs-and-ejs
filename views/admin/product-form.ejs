@@ -1,0 +1,27 @@
+<main>
+    <% const action = product === undefined ? "/admin/add-product" : "/admin/edit-product/" + product.id%>
+    <form class="product-form" action="<%=action%>" method="POST">
+        <div class="form-control">
+            <label for="title">
+                Title
+                <input type="text" name="title" id="title" value="<%= product !== undefined ? product.title : ''%>">
+            </label>
+            <label for="description">
+                Product description
+                <input type="text" name="description" id="description" value="<%= product !== undefined ? product.description : ''%>">
+            </label>
+            <label for="price">
+                Product price
+                <input type="text" name="price" id="price" value="<%= product !== undefined ? product.price : ''%>">
+            </label>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn" type="submit">
+            <% if (product === undefined) {%>
+                Add Product
+            <% } else {%>
+                Save product
+            <% } %>
+        </button>
+    </form>
+</main>
